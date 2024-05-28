@@ -1,10 +1,23 @@
-import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import './App.css'
+import Card from './components/Card'
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+ const data= useSelector((state)=>state.products)
+ console.log(data)
 
   return (
-    <h1>hello world</h1>
+    <>
+    <div className=" flex flex-wrap flex-grow-1 justify-around my-14">
+      {data.map((item)=>{
+        return <Card key={item.id} id={item.id} title={item.title} image={item.image} price={item.price} rating={item.rating} />
+
+      })}
+  
+  </div>
+  </>
   )
 }
 
