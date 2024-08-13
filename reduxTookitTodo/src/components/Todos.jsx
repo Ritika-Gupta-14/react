@@ -15,12 +15,12 @@ function Todos() {
   return (
     <>
     {todos.map((todo)=>(
-    <li key={todo.id}> 
+    <li key={todo.id} className="w-auto m-2 rounded-lg flex justify-between p-2 items-center bg-slate-950 text-white "> 
     {todo.text}
-
-    <button className=" m-2 p-2 "onClick={()=>{dispatch(removeTodo(todo.id))}}>X</button>
-    <button className=" m-2 p-2 "onClick={()=>handleUpdation(todo)}>€</button>
-
+      <div className=''>
+    <button className=" mr-4"onClick={()=>{dispatch(removeTodo(todo.id))}}>⛔</button>
+    <button className=" mr-4"onClick={()=>handleUpdation(todo)}>🔄</button>
+</div>
      </li>
      ))}
     </>

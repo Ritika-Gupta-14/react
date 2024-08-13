@@ -27,9 +27,9 @@ const handleChange=(e)=>{
 
   return (
     <>
-    <div>
+    <div className='m-10'>
     <form onSubmit={handleClick}>
-        <input type='text' className='bg-gray-800 text-white rounded-sm m-2 p-1 '
+        <input type='text' className='bg-gray-800 text-white rounded-lg m-2 p-2 border-white border-2 '
          value={value} 
         onChange={handleChange}></input>
 
