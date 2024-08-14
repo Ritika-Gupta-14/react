@@ -11,10 +11,10 @@ function Postform({post}) {
 const navigate=useNavigate()
 const{register,setValue,watch,handleSubmit,getValues,control}=useForm({
     defaultValues:{
-        title:post?.title||'',
-        slug:post?.slug||'',
-        status:post?.status||'active',
-        content:post?.content||''
+        title:post?post.title:'',
+        slug:post?post.slug:'',
+        status:post?post.status:'active',
+        content:post?post.content:''
     }
 })    
 const userData= useSelector((state)=>state.auth.userData)
@@ -29,7 +29,7 @@ const submit=async(data)=>{
             post.slug,{...data,featuredImage:file?file.fullPath:undefined})
 
             if(dbpost){
-                navigate(`/post/${post.slug}`)
+                navigate(`/post/:${post.slug}`)
             }
     }else{
         const file=data.image[0]? await storageService.uploadFile("",data.image[0]):null
@@ -43,7 +43,7 @@ const submit=async(data)=>{
 
 const slugTransform=useCallback((value)=>{
     if(value && typeof value==="string"){
-        return value.trim().toLowerCase().replace(/^[a-zA-Z\d]+/g,'-')
+        return value.trim().toLowerCase().replace(/[^a-zA-Z\d]/g,'-')
     }
     return ''
 },[])
@@ -79,13 +79,7 @@ return()=>{subscription.unsubscribe()}
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
             <div className="w-1/3 px-2">
-                <Input
-                    label="Featured Image :"
-                    type="file"
-                    className="mb-4"
-                    accept="image/png, image/jpg, image/jpeg, image/gif"
-                    {...register("image", { required: !post })}
-                />
+            
                 {post && (
                     <div className="w-full mb-4">
                      <h1>{post.title}</h1>

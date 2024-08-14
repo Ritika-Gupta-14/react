@@ -7,11 +7,13 @@ function LogoutBtn() {
     const dispatch= useDispatch()
     const logoutHandler=()=>{
         authService.signOut().then(()=>{
-            dispatch(logout())}
+            dispatch(logout())
+            
+          }
         )
         }
   return (
-    <button onClick={logoutHandler} className='bg-blue-300 text-gray-800 rounded-lg p-4'>Logout</button>
+    <button onClick={logoutHandler} className="border-white border rounded-3xl p-2 hover:bg-gray-800">Logout</button>
   )
 }
 

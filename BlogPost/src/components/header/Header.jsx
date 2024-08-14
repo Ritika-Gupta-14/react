@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Header() {
-  const authStatus= useSelector((state)=>{
-    state.auth.status
-  })
+ 
+  const authStatus= useSelector((state)=>state.auth.status)
+  console.log(authStatus);
   const navigate= useNavigate()
  
  
@@ -42,7 +42,7 @@ function Header() {
   return (
     <header>
       <Container>
-        <div className='flex bg-gray-950 text-blue-400 fixed top-0 w-screen justify-between'>
+        <div className='flex flex-wrap bg-gray-950 text-blue-400 fixed top-0 w-screen justify-between'>
         <div className='p-2 mr-2 '>
         <Link to="/"><Logo width="70px" /></Link>
         </div>
@@ -58,7 +58,7 @@ function Header() {
             }
 
           {authStatus && (
-            <li><LogoutBtn/></li>
+            <li className='pr-3 text-base  '><LogoutBtn/></li>
           )}
           </ul>
         </div>

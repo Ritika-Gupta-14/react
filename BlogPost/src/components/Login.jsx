@@ -16,6 +16,8 @@ function Login() {
   const login= async(detailData)=>{
     setError("")
     try {
+      console.log(detailData);
+      console.log(await authService.signIn(detailData));
       const {session}=await authService.signIn(detailData)
       if (session){
         const data= await authService.getUserInfo()
@@ -24,7 +26,9 @@ function Login() {
       }
       
     } catch (error) {
-      setError(error)
+      
+           
+      setError(error.message)
     }
 
   }
@@ -38,7 +42,7 @@ function Login() {
     <div className="text-blue-300 p-5 ">
     <div><h2>SignIn to your account!</h2></div>
     <div className="text-sm  font-thin">Don't have an acount? <Link to="/signup" className=" text-sky-700 hover:text-sky-400 underline ">SignUp</Link></div>
-    <div className="text-sm text-red-700 font-thin p-4 ">{error && <div>{error}</div>}</div></div></div>
+    <div className="text-sm text-red-500 font-thin p-4 ">{error && <div>{error}</div>}</div></div></div>
 <div>
 
     <form onSubmit={handleSubmit(login)}>

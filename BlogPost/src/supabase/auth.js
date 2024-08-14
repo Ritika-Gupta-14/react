@@ -34,7 +34,8 @@ export class AuthService {
             return data;
         } catch (err) {
             console.error("Sign in error:", err.message);
-            return { error: err.message };
+            // return { error: err.message };
+            throw err;
         }
     }
 
